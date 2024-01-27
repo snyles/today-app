@@ -1,0 +1,26 @@
+{
+  "name": "today",
+  "version": "1.0.0",
+  "description": "today app backend",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --loader ts-node/esm ./src/index.ts",
+    "otherstart": "tsc && node ./build/index.js",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sean Niles",
+  "license": "MIT",
+  "dependencies": {
+    "@types/morgan": "^1.9.9",
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "mongodb": "^6.3.0",
+    "morgan": "^1.10.0",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.11.8",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "type": "module"
+}
