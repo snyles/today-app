@@ -1,18 +1,17 @@
-import { MongoClient } from "mongodb"
+import mongoose from 'mongoose'
 
-const connectionString = process.env.mongoString || ""
-const client = new MongoClient(connectionString)
+const db = mongoose.connection
 
+db.on('connected', () => {
+    console.log(`Connected to MongoDB ${db.name} at ${db.host}:${db.port}`);
+})
+db.on('disconnected', () => {
+    console.log(`Disconnected from database`);
+})
 
-let conn
 try {
-    conn = await client.connect()
+    await mongoose.connect(process.env.MONGO_STRING || '');
 } catch (e) {
-    console.error(e)
+    console.log(`Error connecting to mongoDb: ${e}`)
 }
-let db = conn?.db('today')
 
-
-console.log(`Connected to MongoDB database ${db?.databaseName}`);
-
-export default db
