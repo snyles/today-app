@@ -9,5 +9,6 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
+USER node
 CMD ["node", "./build/index.js"]
 EXPOSE ${PORT}

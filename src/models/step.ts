@@ -1,6 +1,6 @@
 import { Schema, model, Types } from 'mongoose'
 
-interface ITask {
+interface IStep {
     owner?: Types.ObjectId,
     title: string,
     description?: string,
@@ -9,12 +9,13 @@ interface ITask {
     complete: boolean,
     saved: boolean,
     timeOfDay?: string[],
+    days: Types.ObjectId[],
 }
 
-const taskSchema = new Schema<ITask>({
+const stepSchema = new Schema<IStep>({
     owner: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'user'
     },
     title: { 
         type: String,
@@ -29,7 +30,13 @@ const taskSchema = new Schema<ITask>({
     color: String,
     complete: Boolean,
     saved: Boolean,
-    timeOfDay: [String]
+    timeOfDay: [String],
+    days: [{ 
+        type: Schema.Types.ObjectId,
+        ref: "days"
+    }],
 })
 
-export const Task = model<ITask>('Task', taskSchema)
+const Step = model<IStep>('Step', stepSchema)
+
+export { Step, IStep }
